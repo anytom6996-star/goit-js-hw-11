@@ -33,29 +33,29 @@ form.addEventListener('submit', async event => {
   showLoader();
 
   try {
-    const data = await fetchImages(searchText);
+  const data = await fetchImages(searchText);
 
-    if (data.hits.length === 0) {
-      iziToast.error({
-        message:
-          'Sorry, there are no images matching your search query. Please try again!',
-        position: 'topRight',
-      });
-
-      return;
-    }
-
-    createGallery(data.hits);
-  } catch (error) {
+  if (data.hits.length === 0) {
     iziToast.error({
-      message: 'Something went wrong!',
+      message:
+        'Sorry, there are no images matching your search query. Please try again!',
       position: 'topRight',
     });
 
-    console.log(error);
-  } finally {
-    hideLoader();
+    return;
   }
 
+  createGallery(data.hits);
+} catch (error) {
+  iziToast.error({
+    message: 'Something went wrong!',
+    position: 'topRight',
+  });
+
+  console.log(error);
+} finally {
+  hideLoader();
   form.reset();
+}
+ 
 });

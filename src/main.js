@@ -6,10 +6,11 @@ import { fetchImages } from './js/pixabay-api.js';
 import {
   createGallery,
   clearGallery,
+  showLoader,
+  hideLoader,
 } from './js/render-functions.js';
 
 const form = document.querySelector('.form');
-const loader = document.querySelector('.loader');
 
 hideLoader();
 
@@ -58,11 +59,3 @@ form.addEventListener('submit', async event => {
 
   form.reset();
 });
-
-function showLoader() {
-  loader.classList.add('is-visible');
-}
-
-function hideLoader() {
-  loader.classList.remove('is-visible');
-}
